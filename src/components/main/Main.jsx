@@ -1,24 +1,8 @@
 import React from "react";
 import { getToken } from "../../helper/getToken";
+import { loadModel } from "../../helper/loadModels";
 import "./main.scss";
 const Autodesk = window.Autodesk;
-
-function loadModel(viewer, documentId) {
-  Autodesk.Viewing.Document.load(
-    documentId,
-    onDocumentLoadSuccess,
-    onDocumentLoadFailure
-  );
-
-  function onDocumentLoadSuccess(viewerDocument) {
-    var defaultModel = viewerDocument.getRoot().getDefaultGeometry();
-    viewer.loadDocumentNode(viewerDocument, defaultModel);
-  }
-
-  function onDocumentLoadFailure() {
-    console.error("Failed fetching Forge manifest");
-  }
-}
 
 const documentId =
   "urn:dXJuOmFkc2sud2lwcHJvZDpmcy5maWxlOnZmLjlDbWlmVHA4VEgtNkVSQXFmQWtIbmc_dmVyc2lvbj00";
