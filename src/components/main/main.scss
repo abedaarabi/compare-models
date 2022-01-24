@@ -1,0 +1,28 @@
+.main {
+  height: 500px;
+  display: flex;
+
+  flex-direction: row;
+
+  #viewer-left {
+    position: absolute;
+    left: 0;
+    right: 50%;
+    height: 500px;
+    margin: 5px;
+    border: 2px solid rgb(214, 78, 78);
+    border-radius: 15px;
+    overflow: hidden;
+  }
+
+  #viewer-right {
+    position: absolute;
+    left: 50%;
+    right: 0;
+    height: 500px;
+    margin: 5px;
+    border: 2px solid rgb(122, 235, 99);
+    border-radius: 15px;
+    overflow: hidden;
+  }
+}
