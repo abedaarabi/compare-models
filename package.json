@@ -10,6 +10,7 @@
     "@types/forge-viewer": "^7.59.0",
     "axios": "^0.25.0",
     "forge-apis": "^0.8.6",
+    "node-fetch": "^3.2.0",
     "node-sass": "^7.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

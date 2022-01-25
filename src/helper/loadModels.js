@@ -10,6 +10,9 @@ export function loadModel(viewer, documentId) {
     var defaultModel = viewerDocument.getRoot().getDefaultGeometry();
     viewer.loadDocumentNode(viewerDocument, defaultModel);
   }
+  viewer.setLightPreset(10);
+  viewer.setEnvMapBackground(false);
+  viewer.fitToView();
 
   function onDocumentLoadFailure() {
     console.error("Failed fetching Forge manifest");

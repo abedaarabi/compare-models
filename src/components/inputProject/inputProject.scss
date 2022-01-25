@@ -1,0 +1,48 @@
+.container {
+  height: 60px;
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  background-color: rgb(37, 61, 77);
+  border-bottom: 3px solid red;
+
+  h3 {
+    color: aliceblue;
+    font-size: 20px;
+    position: fixed;
+    letter-spacing: 2px;
+    top: 10px;
+  }
+  .input-contents {
+    .projcets-name {
+      background-color: rgb(37, 61, 77);
+      left: 0;
+      margin-top: 45px;
+      width: 350px;
+      position: absolute;
+      top: 15px;
+      border-right: 3px solid red;
+      border-bottom: 3px solid red;
+
+      z-index: 2;
+      cursor: pointer;
+      .data-result {
+        padding: 5px 20px;
+        color: aliceblue;
+      }
+      .data-result:hover {
+        background-color: red;
+        transition: all 0.2s ease;
+      }
+    }
+  }
+
+  input {
+    height: 25px;
+    width: 300px;
+    border-radius: 5px;
+  }
+}

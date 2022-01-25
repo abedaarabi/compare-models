@@ -1,12 +1,31 @@
+import React from "react";
 import "./App.scss";
+import InputProject from "./components/inputProject/InputProject";
 import Main from "./components/main/Main";
-import Navbar from "./components/navbar/Navbar";
+
+import { fetchProject } from "./helper/fetchProjects";
+const projects = fetchProject("http://10.25.38.36:9090/");
 
 function App() {
+  const [projectItems, setProjectItems] = React.useState();
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  function getProjectInfo(id, name) {
+    setProjectItems([]);
+
+    const items = fetchProject(`http://10.25.38.36:9090/projects/${id}`);
+    setIsLoading(true);
+    items.then((data) => {
+      setProjectItems(data);
+      setIsLoading(false);
+    });
+  }
+
   return (
     <div className="App">
-      <Navbar />
-      <Main />
+      {/* <Navbar /> */}
+      <InputProject projects={projects} getProjectInfo={getProjectInfo} />
+      <Main projectItems={projectItems} isLoading={isLoading} />
     </div>
   );
 }
