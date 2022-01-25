@@ -7,10 +7,10 @@ import { fetchProject } from "./helper/fetchProjects";
 const projects = fetchProject("http://10.25.38.36:9090/");
 
 function App() {
-  const [projectItems, setProjectItems] = React.useState();
-  const [isLoading, setIsLoading] = React.useState(true);
+  const [projectItems, setProjectItems] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(false);
 
-  function getProjectInfo(id, name) {
+  function getProjectInfo(id) {
     setProjectItems([]);
 
     const items = fetchProject(`http://10.25.38.36:9090/projects/${id}`);

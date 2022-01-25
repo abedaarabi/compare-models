@@ -1,4 +1,6 @@
 const Autodesk = window.Autodesk;
+
+
 export function loadModel(viewer, documentId) {
   Autodesk.Viewing.Document.load(
     documentId,

@@ -36,6 +36,7 @@ function InputProject({ projects, getProjectInfo }) {
             type="text"
             placeholder="search for project..."
             onChange={(event) => setSearch(event.target.value)}
+            value={search}
           />
         </div>
         <div className="projcets-name">
@@ -50,6 +51,7 @@ function InputProject({ projects, getProjectInfo }) {
                   onClick={() => {
                     getProjectInfo(project.id);
                     setProjectName(project.name);
+                    console.log(search, "search");
                     setSearch("");
                   }}
                 >
