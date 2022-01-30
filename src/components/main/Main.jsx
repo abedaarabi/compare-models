@@ -7,7 +7,7 @@ const Autodesk = window.Autodesk;
 // const documentId =
 //   "urn:dXJuOmFkc2sud2lwcHJvZDpmcy5maWxlOnZmLno3Nl9BeU5CVEVDRjhJM243YTFLc2c_dmVyc2lvbj0yOA";
 
-function Main({ projectItems, isLoading }) {
+function Main({ projectItems, isLoading, getItemInfo }) {
   const [documentId, setDocumentId] = React.useState("");
   const [accessToken, setAccessToken] = React.useState("");
 
@@ -15,8 +15,13 @@ function Main({ projectItems, isLoading }) {
   const rightViewerRef = React.useRef();
 
   React.useEffect(() => {
+    if (accessToken) {
+      return;
+    }
     getToken()
-      .then((res) => setAccessToken(res))
+      .then((res) => {
+        setAccessToken(res);
+      })
       .then(() => {
         const options = {
           env: "AutodeskProduction2",
@@ -35,6 +40,7 @@ function Main({ projectItems, isLoading }) {
           const viewerRight = new Autodesk.Viewing.GuiViewer3D(
             document.getElementById("viewer-right")
           );
+
           const startedCodeLeft = viewerLeft.start();
           const startedCodeRight = viewerRight.start();
           leftViewerRef.current = viewerLeft;
@@ -56,15 +62,23 @@ function Main({ projectItems, isLoading }) {
           // loadModel(viewerRight, "");
         });
       });
-  }, []);
+  }, [accessToken]);
 
   React.useEffect(() => {
-
     if (accessToken && leftViewerRef.current && rightViewerRef.current) {
       loadModel(leftViewerRef.current, documentId);
       loadModel(rightViewerRef.current, documentId);
     }
-  }, [documentId]);
+  }, [documentId, accessToken]);
+
+  React.useEffect(() => {
+    if (isLoading && leftViewerRef.current && rightViewerRef.current) {
+      console.log(leftViewerRef.current);
+
+      leftViewerRef.current.unloadModel();
+      rightViewerRef.current.unloadModel();
+    }
+  }, [isLoading]);
 
   return (
     <div className="main">
@@ -73,16 +87,17 @@ function Main({ projectItems, isLoading }) {
           <div className="main-loading"> Loading Models....</div>
         ) : (
           <div className="project-items">
-            {projectItems.map((items) => (
+            {projectItems.map((item) => (
               <div
                 className="item"
-                key={items.derivativesId}
+                key={item.derivativesId}
                 onClick={() => {
-                  items.derivativesId &&
-                    setDocumentId("urn:" + items.derivativesId);
+                  item.derivativesId &&
+                    setDocumentId("urn:" + item.derivativesId);
+                  getItemInfo(item);
                 }}
               >
-                <p>{items.fileName}</p>
+                <p>{item.fileName}</p>
               </div>
             ))}
           </div>
@@ -97,6 +112,3 @@ function Main({ projectItems, isLoading }) {
 }
 
 export default Main;
-
-
-

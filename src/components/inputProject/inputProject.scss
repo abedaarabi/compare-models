@@ -1,3 +1,4 @@
+@use "sass:color";
 .container {
   height: 60px;
   padding-left: 20px;
@@ -7,7 +8,7 @@
   flex-direction: row-reverse;
   justify-content: space-around;
   background-color: rgb(37, 61, 77);
-  border-bottom: 3px solid red;
+  border-bottom: 3px solid rgb(201, 90, 90);
 
   h3 {
     color: aliceblue;
@@ -24,8 +25,9 @@
       width: 350px;
       position: absolute;
       top: 15px;
-      border-right: 3px solid red;
-      border-bottom: 3px solid red;
+      border-right: 3px solid rgb(201, 90, 90);
+
+      border-bottom: 3px solid rgb(201, 90, 90); //darken(rgb(37, 61, 77), 20%);
 
       z-index: 2;
       cursor: pointer;
@@ -34,7 +36,7 @@
         color: aliceblue;
       }
       .data-result:hover {
-        background-color: red;
+        background-color: rgb(201, 90, 90);
         transition: all 0.2s ease;
       }
     }

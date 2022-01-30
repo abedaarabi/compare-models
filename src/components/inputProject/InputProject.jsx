@@ -49,9 +49,10 @@ function InputProject({ projects, getProjectInfo }) {
                   key={project.id}
                   className="data-result"
                   onClick={() => {
-                    getProjectInfo(project.id);
+                    getProjectInfo(project);
+                  
                     setProjectName(project.name);
-                    console.log(search, "search");
+
                     setSearch("");
                   }}
                 >
